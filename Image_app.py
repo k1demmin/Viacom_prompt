@@ -31,7 +31,7 @@ def import_and_predict(image_data,model):
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     image = np.asarray(image)
     #img = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-    img_resize = image.resize((75,75),resample=PIL.Image.BICUBIC)/255
+    img_resize = image.resize((75,75),PIL.Image.BICUBIC)/255
     img_reshape = img_resize[np.newaxis,...]
     prediction = model.predict(img_reshape)
 
