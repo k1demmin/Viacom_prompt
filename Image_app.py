@@ -6,7 +6,7 @@
 
 import tensorflow as tf
 import streamlit as st
-#import cv2
+import cv2
 from PIL import Image, ImageOps
 import numpy as np
 import PIL
@@ -29,11 +29,11 @@ file = st.file_uploader("Upload your image here")
 def import_and_predict(image_data,model):
     size = (124,124)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
-    image = ImageOps.fit(image,(75,75))
-    #img_resize = image.resize((75,75),PIL.Image.BICUBIC)/255
-    image_resize = np.asarray(image)
-    #img = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-    img_reshape = image_resize[np.newaxis,...]
+    image = np.asarray(image)
+    img = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+    img_resize = (cv2.resize(img, dsize=(75,75),
+                            interpolation=cv2.INTER_CUBIC))/255
+    img_reshape = img_resize[np.newaxis,...]
     prediction = model.predict(img_reshape)
 
     return prediction
@@ -41,7 +41,7 @@ def import_and_predict(image_data,model):
 if file is None:
     st.text("You have not uploaded an image")
 else:
-    image = Image.open(file).convert('LA')
+    image = Image.open(file)
     st.image(image, use_column_width = True)
     prediction = import_and_predict(image,model)
 
