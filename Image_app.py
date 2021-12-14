@@ -25,7 +25,7 @@ file = st.file_uploader("Upload your image here")
 
 # In[ ]:
 
-
+# Notes for future self: Gotta put openCV back in the requirement file and then see what issues happen
 def import_and_predict(image_data,model):
     size = (124,124)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
