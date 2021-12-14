@@ -9,6 +9,7 @@ import streamlit as st
 #import cv2
 from PIL import Image, ImageOps
 import numpy as np
+import PIL
 
 
 # In[5]:
