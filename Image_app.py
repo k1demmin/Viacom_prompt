@@ -29,10 +29,10 @@ file = st.file_uploader("Upload your image here")
 def import_and_predict(image_data,model):
     size = (124,124)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
-    image = np.asarray(image)
-    #img = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
     img_resize = image.resize((75,75),PIL.Image.BICUBIC)/255
-    img_reshape = img_resize[np.newaxis,...]
+    image_resize = np.asarray(image_resize)
+    #img = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)    
+    img_reshape = image_resize[np.newaxis,...]
     prediction = model.predict(img_reshape)
 
     return prediction
